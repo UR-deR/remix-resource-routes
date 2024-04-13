@@ -6,7 +6,7 @@ export class User {
 
   static create(id: number, name: string, email: string): User {
     if (name === '') {
-      throw new DomainException('Name is required');
+      throw new DomainException('Name must not be empty');
     }
 
     return new User(id, name, new Email(email));

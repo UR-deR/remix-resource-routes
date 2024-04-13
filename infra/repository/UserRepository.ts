@@ -23,18 +23,7 @@ export class UserRepository implements IUserRepository {
       if (!user) {
         return null;
       }
-      return User.create(user.id, user.name, user.email);
-    }
-  }
 
-  async findByEmail(email: User['email']): Promise<User | null> {
-    {
-      const user = await prismaClient.user.findUnique({
-        where: { email: email.value },
-      });
-      if (!user) {
-        return null;
-      }
       return User.create(user.id, user.name, user.email);
     }
   }
@@ -42,6 +31,7 @@ export class UserRepository implements IUserRepository {
   async findAll(): Promise<User[]> {
     {
       const users = await prismaClient.user.findMany();
+
       return users.map((user) => User.create(user.id, user.name, user.email));
     }
   }
